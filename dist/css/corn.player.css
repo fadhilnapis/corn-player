@@ -1,0 +1,232 @@
+
+		.corn-player{
+			display: inline-block;
+			position: relative;
+			font-size: 3em;
+			text-align: center;
+		}
+		.corn-player .keyhit{
+			color:#fff;
+			font-family: Arial, sans-serif;
+			position: absolute;
+			margin-top: 1em;
+			margin-right: 1em;
+			top: 0;
+			right: 0;
+			opacity: 0.0;
+		}
+		.corn-player .keyhit.hiting{
+			opacity: 1.0;
+		}
+		.corn-player .keyhit.hited{
+			opacity: 0;
+			transition: .5s
+		}
+		.corn-player video{
+			background: black;
+		    width: 100%;
+		    height: 100%;
+		}
+		.corn-player .subtitleFloater{
+			z-index:4;
+			left: 50%;
+			bottom: 50%;
+			font-family: Arial, sans-serif;
+			position: absolute;
+			font-size: 1.2vw;
+			display: none;
+			overflow: visible !important;
+			width: 95%;
+			align-items: top;
+			text-align: center;
+			color: #fff;
+			text-shadow:
+				.10em .10em .04em rgba(0,0,0,.5),
+				-.04em -.04em .02em #000,
+				.04em -.04em .02em #000,
+				-.04em .04em .02em #000,
+				.04em .04em .02em #000;
+		}
+		.corn-player .subtitleFloater.show{
+			display: inline-block;
+		}
+		.corn-player.full-screen{
+		    width: 100% !important;
+		    height: 100% !important;
+		    position: fixed;
+		    top:0;
+		    left: 0;
+			z-index:5;
+			font-size: 2em;
+		}
+		.corn-player.full-screen .subtitleFloater{
+			font-size: 2vw;
+		}
+		.corn-player .controller{
+			transition: .4s;
+			position: absolute;
+			bottom: 0;
+			background: #fff;
+			color:#5a5a5a;
+			align-items: center;
+			justify-content: flex-start;
+			width: 100%;
+			height: 40px;
+			display: flex;
+		    font-size: 15px;
+		    font-family:'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		}
+		.corn-player.idle{
+			cursor: none;
+		}
+		.corn-player.idle .controller{
+			opacity: 0.0;
+		}
+		.corn-player .controller .component{
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			height: 100%;
+			border:0px solid transparent;
+			background: transparent;
+			padding: 0px;
+		}
+		.corn-player .controller .component.timeline{
+			flex: 1;
+			padding:0 18px;
+		}
+		.corn-player .controller .component.volumeline{
+			width: 12%;
+			max-width: 106px;
+			padding:0 2%;
+		}
+		.corn-player .controller .component .bar{
+			width: 100%;
+			height: 3px;
+			border-radius: 3px;
+			position: relative;
+			background: #dadada;
+		}
+		.corn-player .controller .component .bar .inner{
+			position: absolute;
+			top: 0;
+			border-radius: 3px;
+		}
+		.corn-player .controller .component .bar .buffer-group{
+			height: 100%;
+			width: 100%;
+			position: relative;
+		}
+		.corn-player .controller .component .bar .buffered{
+			transition: width .5s;
+			height: 100%;
+			background: #5a5a5a;
+		}
+		.corn-player .controller .component .bar .skipperGroup{
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			z-index: 4;
+			top: 0;
+			left: 0
+		}
+		.corn-player .controller .component .bar .skippeEl{
+			transition: width .5s;
+			height: 100%;
+			background: #efcb13;
+			position: absolute;
+			border-radius: 0px
+		}
+		.corn-player .controller .component .bar .current{
+			left: 0;
+			height: 100%;
+			background: #4285f4;
+		}
+		.corn-player .controller .component .bar .thumb{
+			top: 50%;
+			margin-top: calc(14px /2 *-1 - 0.7px);
+			margin-left: calc(14px /2 *-1);
+			height: 14px;
+			width: 14px;
+			z-index: 5;
+			border-radius: 8px;
+			background: #4285f4;
+		}
+		.corn-player .controller .component.btg{
+			cursor: default;
+			padding: 10px;
+		}
+		.corn-player .controller .relate{
+			position: relative;
+		}
+		.corn-player .controller .relate .cc-list{
+			overflow: hidden;
+			display: inline-block;
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+			background: #fff;
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			margin-bottom: 100%;
+			transition:.5s;
+			z-index: 5;
+		}
+		.corn-player .controller .relate .cc-list .sub{
+			display: inline-block;
+			padding: 5px 0;
+			width: 100%;
+			cursor: pointer;
+		}
+		.corn-player .controller .relate .cc-list .sub:before{
+			content: '\2000'
+		}
+		.corn-player .controller .relate .cc-list .sub.choosen:before{
+			margin-left: -5px;
+			content: '\2713'
+		}
+		.corn-player .controller .relate .cc-list .sub:hover{
+			background: rgba(0,0,0,.2);
+		}
+		.corn-player .controller .component.btg > .inner{
+		    width: 17px;
+		    height: 17px;
+			display: inline-block;
+			padding: 0px;
+			background-size: contain !important;
+			background-position: center !important;
+			background-repeat: no-repeat !important;
+		}
+		.corn-player .controller .component > .inner{
+			display: inline-block;
+		}
+
+		.corn-player .controller .btg-play > .inner{
+			width: 14px !important;
+			height: 14px !important;
+			background-image: url(../img/Play.svg);
+		}
+		.corn-player .controller .btg-play.paused > .inner{
+			background-image: url(../img/paused.svg);
+		}
+		.corn-player .controller .btg-cc > .inner{
+			width: 20px !important;
+			height: 15px !important;
+			background-image: url(../img/cc.svg);
+		}
+		.corn-player .controller .btg-cc.yes > .inner{
+			background-image: url(../img/ccyes.svg);
+		}
+		.corn-player .controller .btg-sound > .inner{
+			background-image: url(../img/Speaker_Icon.svg);
+		}
+		.corn-player .controller .btg-sound.muted > .inner{
+			background-image: url(../img/Speaker_Mute_Icon.svg);
+		}
+		.corn-player .controller .btg-fullscreen > .inner{
+			background-image: url(../img/fullscreen.svg);
+		}
+		.corn-player .controller .btg-fullscreen.exit > .inner{
+			background-image: url(../img/fullscreen-exit.svg);
+		}

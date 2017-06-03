@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Corn Player</title>
+	<script type="text/javascript" src="dist/js/jquery.js"></script>
+	<script type="text/javascript" src="dist/js/corn.player.jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="dist/css/corn.player.css">
+</head>
+<body>
+<video src="video/bunny.mp4" width="500" height="300" controls class="bunny">
+	<span kind="subtitles" src="sub/sub.vtt" name="english1" srclang="en"></span>
+	<span kind="subtitles" src="sub/sub.srt" name="english2" srclang="en"></span>
+	<span label='Start' kind="skip" name="start" sec="2"></span>
+	<span label='Middle Video' kind="skip" name="middle" sec="30"></span>
+	<span label='Tird last' kind="skip" name="english2" sec="57"></span>
+</video>
+<video id="gg">
+	<span kind="subtitles" src="sub/sub.vtt" name="english1" srclang="en"></span>
+	<span kind="subtitles" src="sub/sub.srt" name="english2" srclang="en"></span></video>
+<video id="fu" >
+	<source src="video/bunny.mp4" type="video/mp4">
+	<span label='Start' kind="skip" name="start" sec="2"></span>
+	<span label='Middle Video' kind="skip" name="middle" sec="30"></span>
+	<span label='Tird last' kind="skip" name="english2" sec="57"></span>
+</video>
+<video id="ff"></video>
+<script type="text/javascript">
+	log($(".bunny").cornPlayer())
+	$("#ff").cornPlayer('source', 'video/bunny.mp4')
+	log($("#ff").cornPlayer('source'))
+	$("#gg").cornPlayer('source','video/bunny.mp4')
+	$("#gg").cornPlayer('volume',1)
+	log($("#fu").cornPlayer('width'))
+</script>
+</body>
+</html>
