@@ -842,4 +842,7 @@ if (typeof Object.create !=='function') {
 		videoEnd:null,
 		videoStart:null,
 	}
+	$(document).ready(function($) {
+		$('video[data-role="corn-player"]').cornPlayer();
+	});
 })(jQuery, window, document)

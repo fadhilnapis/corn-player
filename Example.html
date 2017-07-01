@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="dist/css/corn.player.css">
 </head>
 <body>
-<video src="video/bunny.mp4" width="500" height="300" controls class="bunny">
+<video src="video/bunny.mp4" width="500" height="300" data-role="corn-player" controls class="bunny">
 	<span kind="subtitles" src="sub/sub.vtt" name="english1" srclang="en"></span>
 	<span kind="subtitles" src="sub/sub.srt" name="english2" srclang="en"></span>
 	<span label='Start' kind="skip" name="start" sec="2"></span>
@@ -24,7 +24,6 @@
 </video>
 <video id="ff"></video>
 <script type="text/javascript">
-	log($(".bunny").cornPlayer())
 	$("#ff").cornPlayer('source', 'video/bunny.mp4')
 	log($("#ff").cornPlayer('source'))
 	$("#gg").cornPlayer('source','video/bunny.mp4')
