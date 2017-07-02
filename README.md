@@ -14,7 +14,7 @@ CornPlayer provided some features
 - custom player support
 
 ## Requirement 
-this plugin require atleast [jQuery v1.1](https://jquery.com/) library on your website
+this plugin require atleast [jQuery v1.1](https://jquery.com/) library on your web page
 
 ## Installation
 - clone `dist` folder on your project
