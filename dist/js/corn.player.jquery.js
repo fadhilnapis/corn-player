@@ -28,19 +28,21 @@ if (typeof Object.create !=='function') {
 				$.extend($.fn.cornPlayer.options, $.fn.cornPlayer.options, options)
 			}
 
-			$.each($.fn.cornPlayer.options,function(index, el) {
-				if (!(index in that.onCallMethod)) {
-					if (typeof el==='function') {
-						that.$elem.data(index, el.call(that.elem))
-						that[index]=el.call(that.elem)
+			if (that.$elem.attr('corn-player')===undefined) {
+				$.each($.fn.cornPlayer.options,function(index, el) {
+					if (!(index in that.onCallMethod)) {
+						if (typeof el==='function') {
+							that.$elem.data(index, el.call(that.elem))
+							that[index]=el.call(that.elem)
+						}else{
+							that.$elem.data(index, el)
+							that[index]=el
+						}
 					}else{
-						that.$elem.data(index, el)
 						that[index]=el
 					}
-				}else{
-					that[index]=el
-				}
-			});
+				});
+			}
 			that.fetch()
 			that.build()
 			that.initFunction()
@@ -172,8 +174,15 @@ if (typeof Object.create !=='function') {
 				that.vidControl.find(".volumeline .bar .thumb").css("left",(Math.min(Math.max(vol*100,0),100))+"%")
 				that.vidControl.find(".volumeline .bar .current").css("width",(Math.min(Math.max(vol*100,0),100))+"%")
 			}
-			toggleFullScreen = function(wrapper) {
-				if (!that.document.fullscreenElement &&!that.document.mozFullScreenElement && !that.document.webkitFullscreenElement && !that.document.msFullscreenElement) {
+			toTitleCase = function(str) {
+				return str.replace(/(?:^|\s)\w/g, function(match) {
+					return match.toUpperCase();
+				});
+			}
+
+			if (that.$elem.attr('corn-player')===undefined){
+				goFullscreen =function(wrapper) {
+					var that = this;
 					if (that.document.documentElement.requestFullscreen) {
 					  that.document.documentElement.requestFullscreen();
 					} else if (that.document.documentElement.msRequestFullscreen) {
@@ -183,10 +192,13 @@ if (typeof Object.create !=='function') {
 					} else if (that.document.documentElement.webkitRequestFullscreen) {
 					  that.document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
 					}
+					that.vidControl = wrapper.find(".controller")
 					wrapper.addClass("full-screen")
 					$('body').css('overflow', 'hidden');
 					that.vidControl.find(".btg-fullscreen").addClass("exit")
-				}else{
+				},
+				exitFullscreen =function(wrapper) {
+					var that = this;
 					if (that.document.exitFullscreen) {
 					  that.document.exitFullscreen();
 					} else if (that.document.msExitFullscreen) {
@@ -197,11 +209,25 @@ if (typeof Object.create !=='function') {
 					  that.document.webkitExitFullscreen();
 					}
 					$('body').css('overflow', 'auto');
-				}
-			}
-			toTitleCase = function(str) {
-				return str.replace(/(?:^|\s)\w/g, function(match) {
-					return match.toUpperCase();
+				},
+				toggleFullscreen = function(wrapper) {
+					var that = this;
+					if (!that.document.fullscreenElement &&!that.document.mozFullScreenElement && !that.document.webkitFullscreenElement && !that.document.msFullscreenElement) {
+						that.goFullscreen(wrapper)
+					}else{
+						that.exitFullscreen(wrapper)
+					}
+				},
+
+				that.$elem.on('goFullscreen', function(event) {
+					goFullscreen(that.wrapper)
+				});
+				that.$elem.on('exitFullscreen', function(event) {
+					exitFullscreen(that.wrapper)
+				});
+				that.$elem.on('toggleFullscreen', function(event) {
+					console.log('gg')
+					toggleFullscreen(that.wrapper)
 				});
 			}
 			//}
@@ -230,7 +256,7 @@ if (typeof Object.create !=='function') {
 			}
 			//}
 		//---------------------------------------------	Focus Player					{
-		if (that.$elem.attr('corn-player')===undefined)//
+			if (that.$elem.attr('corn-player')===undefined)//
 			$(that.document).on('click',function(e) {
 				if (!that.playerFocusonclick)
 					that.playerFocus = false
@@ -238,7 +264,7 @@ if (typeof Object.create !=='function') {
 					that.playerFocus = true
 				that.playerFocusonclick = false
 			})
-		if (that.$elem.attr('corn-player')===undefined)//
+			if (that.$elem.attr('corn-player')===undefined)//
 			that.wrapper.on('click',function(e) {
 				that.playerFocusonclick=true
 				that.playerFocus = true
@@ -290,7 +316,7 @@ if (typeof Object.create !=='function') {
 					name:"f",
 					status:"up",
 					down:function() {
-						toggleFullScreen(that.wrapper)
+						toggleFullscreen(that.wrapper)
 					},
 					up:function() {
 					}
@@ -387,7 +413,7 @@ if (typeof Object.create !=='function') {
 					that.wrapper.find(".keyhit").text(text)
 				},
 			}
-		if (that.$elem.attr('corn-player')===undefined)//
+			if (that.$elem.attr('corn-player')===undefined)//
 			$(that.window).on("keydown",function(e) {
 				if (that.playerFocus) {
 					if (e.keyCode.toString() in that.kc) {
@@ -399,7 +425,7 @@ if (typeof Object.create !=='function') {
 					}
 				}
 			})
-		if (that.$elem.attr('corn-player')===undefined)//
+			if (that.$elem.attr('corn-player')===undefined)//
 			$(that.window).on("keyup",function(e) {
 				if (that.playerFocus) {
 					if (e.keyCode.toString() in that.kc) {
@@ -412,7 +438,7 @@ if (typeof Object.create !=='function') {
 			})
 			//}
 		//---------------------------------------------	Play Button						{
-		if (that.$elem.attr('corn-player')===undefined)//
+			if (that.$elem.attr('corn-player')===undefined)//
 			that.vidControl.find(".btg-play").on("click",function(e){
 				if ($(this).is(".paused")) {
 					$(this).removeClass("paused")
@@ -427,7 +453,7 @@ if (typeof Object.create !=='function') {
 			})
 			//}
 		//---------------------------------------------	Mute Button						{
-		if (that.$elem.attr('corn-player')===undefined)//
+			if (that.$elem.attr('corn-player')===undefined)//
 			that.vidControl.find(".btg-sound").on("click",function(e){
 				if ($(this).is(".muted")) {
 					$(this).removeClass("muted")
@@ -439,13 +465,13 @@ if (typeof Object.create !=='function') {
 			})
 			//}
 		//---------------------------------------------	Full Screen Button				{
-		if (that.$elem.attr('corn-player')===undefined)//
+			if (that.$elem.attr('corn-player')===undefined)//
 			that.vidControl.find(".btg-fullscreen").on("click",function(e){
 				if ($(this).is(".exit")) {
-					toggleFullScreen(that.wrapper)
+					toggleFullscreen(that.wrapper)
 				}else{
 					$(this).addClass("exit")
-					toggleFullScreen(that.wrapper)
+					toggleFullscreen(that.wrapper)
 				}
 			})
 			//}
@@ -539,15 +565,15 @@ if (typeof Object.create !=='function') {
 		//---------------------------------------------	Subtitle Button					{
 			that.ccheight = that.vidControl.find('.btg-cc').parent().find('.cc-list').height()
 			that.vidControl.find('.btg-cc').parent().find('.cc-list').css('height',0)
-		if (that.$elem.attr('corn-player')===undefined)//
+			if (that.$elem.attr('corn-player')===undefined)//
 			that.vidControl.find('.relate').on('mouseenter',function(e) {
 				$(this).find('.cc-list').css('height',that.ccheight)
 			})
-		if (that.$elem.attr('corn-player')===undefined)//
+			if (that.$elem.attr('corn-player')===undefined)//
 			that.vidControl.find('.relate').on('mouseleave',function(e) {
 				$(this).find('.cc-list').css('height',0)
 			})
-		if (that.$elem.attr('corn-player')===undefined)//
+			if (that.$elem.attr('corn-player')===undefined)//
 			that.vidControl.find('.btg-cc, .cc-list .sub').on('click',function(e) {
 				ele = $(this)
 				if ($(this).is('.sub')) {
@@ -659,7 +685,7 @@ if (typeof Object.create !=='function') {
 			that.hidetimout=setTimeout(function(e) {
 				that.wrapper.addClass("idle")
 			},1000);
-		if (that.$elem.attr('corn-player')===undefined)//
+			if (that.$elem.attr('corn-player')===undefined)//
 			that.wrapper.on("mousemove",function(e){
 				if (that.wrapper.find(".controller").css('display')=='none'&&that.showController) {
 					that.wrapper.find(".controller").css('display', 'flex')
@@ -690,7 +716,7 @@ if (typeof Object.create !=='function') {
 					that.vidControl.find(".timeline .bar .current").css("width",(Math.min(Math.max(posperc,0),100))+"%")
 				}
 			}
-		if (that.$elem.attr('corn-player')===undefined)//
+			if (that.$elem.attr('corn-player')===undefined)//
 			that.vidControl.find(".timeline").on("mousedown",function(e){
 				that.gettimepos(e)
 				$(that.window).on("mousemove",function(e){
@@ -713,7 +739,7 @@ if (typeof Object.create !=='function') {
 					that.vidControl.find(".volumeline .bar .current").css("width",(Math.min(Math.max(posperc,0),100))+"%")
 				}
 			}
-		if (that.$elem.attr('corn-player')===undefined)//
+			if (that.$elem.attr('corn-player')===undefined)//
 			that.vidControl.find(".volumeline").on("mousedown",function(e){
 				that.getvolpos(e)
 				$(that.window).on("mousemove",function(e){
@@ -792,6 +818,20 @@ if (typeof Object.create !=='function') {
 					return this.volume
 				});
 			},
+			goFullscreen:function(val) {
+				$(this).trigger('goFullscreen')
+				return val
+			},
+			exitFullscreen:function(val) {
+				$(this).trigger('exitFullscreen')
+				return val
+			},
+			toggleFullscreen:function(val) {
+				if ($(this).attr('corn-player')!=undefined){
+					$(this).trigger('toggleFullscreen')
+				}
+				return val
+			},
 		},
 	}
 
@@ -836,6 +876,15 @@ if (typeof Object.create !=='function') {
 		},
 		volume:function(val) {
 			return Corn.methods.volume.call(this, val)
+		},
+		goFullscreen:function(val) {
+			return Corn.methods.goFullscreen.call(this, val)
+		},
+		exitFullscreen:function(val) {
+			return Corn.methods.exitFullscreen.call(this, val)
+		},
+		toggleFullscreen:function(val) {
+			return Corn.methods.toggleFullscreen.call(this, val)
 		},
 		cc:true,
 		videoInit:null,

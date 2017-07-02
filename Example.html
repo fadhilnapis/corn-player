@@ -13,7 +13,7 @@
 	<span label='Middle Video' kind="skip" name="middle" sec="30"></span>
 	<span label='Tird last' kind="skip" name="english2" sec="57"></span>
 </video>
-<video id="gg">
+<video id="gg" width="500">
 	<span kind="subtitles" src="sub/sub.vtt" name="english1" srclang="en"></span>
 	<span kind="subtitles" src="sub/sub.srt" name="english2" srclang="en"></span></video>
 <video id="fu" >
@@ -30,5 +30,6 @@
 	$("#gg").cornPlayer('volume',1)
 	log($("#fu").cornPlayer('width'))
 </script>
+<button onclick="$('#gg').trigger('toggleFullscreen')">gg</button>
 </body>
 </html>
