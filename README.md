@@ -40,17 +40,19 @@ $('video').cornPlayer();
 
 ## Usage
 to initial or access corn player you can use serveral option.
-### Method
-you can access initialized corn player by calling specific method using cornPlayer function. Call the method by using `$(_[jQuery Object]_).cornPlayer('_methodName_')`:
 
-|Parameter|Description|
-|---------|-----------|
-|`source`[, `URL(string)`]|set or return video url|
-|`volume`[, `0-1(Float)`]|set or return video volume|
-|`height`[, `0-1(Float)`]|set or return video height|
-|`width`[, `0-1(Float)`]|set or return video width|
-|`showController`[, `0-1(Float)`]|disable or enable video controller|
-|`controller`[, `Element(jQuery Object)`]|set video custom controller|
-|`goFullscreen`|set video to full screen|
-|`exitFullscreen`|exit video from full screen|
-|`toggleFullscreen`|set or exit video full screen|
+
+### Method
+you can access initialized corn player by calling specific method using cornPlayer function. Call the method by using `$([jQuery Object]).cornPlayer('methodName')`:
+
+|Parameter									|Description					|
+|-------------------------------------------|-------------------------------|
+|`source`[, `URL(string)`]					|set or return video url		|
+|`volume`[, `0-1(Float)`]					|set or return video volume		|
+|`height`[, `0-1(Float)`]					|set or return video height		|
+|`width`[, `0-1(Float)`]					|set or return video width		|
+|`showController`[, `0-1(Float)`]			|disable or enable video controller|
+|`controller`[, `Element(jQuery Object)`]	|set video custom controller	|
+|`goFullscreen`								|set video to full screen		|
+|`exitFullscreen`							|exit video from full screen	|
+|`toggleFullscreen`							|set or exit video full screen	|
