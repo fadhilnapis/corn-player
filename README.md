@@ -44,7 +44,7 @@ to initial or access corn player you can use serveral option.
 you can access initialized corn player by calling specific method using cornPlayer function. Call the method by using `$(_[jQuery Object]_).cornPlayer('_methodName_')`:
 
 |Parameter|Description|
-|---|---|---|
+|---------|-----------|
 |`source`[, `URL(string)`]|set or return video url|
 |`volume`[, `0-1(Float)`]|set or return video volume|
 |`height`[, `0-1(Float)`]|set or return video height|
