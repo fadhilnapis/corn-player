@@ -68,7 +68,7 @@ to add subtitle or skipper to you video player, add any HTML tag inside your vid
 |`sec`|`time in second`|set skipper language|
 |`label`|`skipper label text`|set skipper language|
 
-<br>For example:
+For example:
 
 ```html
 <video src="video/bunny.mp4" data-role="corn-player">
