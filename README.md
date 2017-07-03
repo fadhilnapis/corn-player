@@ -1,10 +1,8 @@
 ---
-
 layout: product
 lang: both
 Type: product
-
----
+-----
 
 # corn-player
 Another jQuery HTML5 player with subtitle and track support.
@@ -134,7 +132,7 @@ For example:
 	<span kind="subtitle" name="English" src="sub/sub.vtt" srclang="en"></span>
 	<span kind="skip" name="start" label='Start' sec="2"></span>
 	<span kind="skip" name="middle" label='Middle Video' sec="30"></span>
-	<span kind="skip" name="english2" label='Third last' sec="57"></span>
+	<span kind="skip" name="end" label='Third last' sec="57"></span>
 </video>
 ```
 
