@@ -1,9 +1,9 @@
 ---
-layout: product
+layout: "product"
 
-lang: both
+lang: "both"
 
-Type: product
+Type: "product"
 ---
 
 # corn-player
