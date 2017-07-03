@@ -40,6 +40,62 @@ $('video').cornPlayer();
 ## Usage
 CornPlayer provided serveral usage and allow you to customize your player.
 
+### Initialize
+you have two option to initialize corn-player. Whether use attribute `data-role="corn-player"` or you can call `.cornPlayer()` to your jQuery element.
+### Initialize using html
+To initialize just using html you will need this attribute:
+
+|Attribute|Value|Description|
+|-|-|-|
+|`data-role`|`corn-player`|initialize video element to cornPlayer|
+|`src`|Video URL|to set video URL|
+
+And you can add additional element inside video, See [More](#subtitle--skipper).
+
+|Tag|Other Attribute|description|
+|-|-|-|
+|&lt;span `kind="subtitle"`&gt;|`name`,`src`,`srclang`|add subtitle to video|
+|&lt;span `kind="skip"`&gt;|`name`,`label`,`sec`|add skip or time label to video|
+
+#### Initialize with option
+you can initialize corn-player while set the properties.
+
+|Properties|Data Type|Description|
+|-|-|-|
+|`source`|String|video url|
+|`volume`|Float|video default volume|
+|`height`|Integer|video height|
+|`width`|Integer|video width|
+|`showController`|Boolean|allow to show control|
+|`videoInit`|Function|callback on initialized|
+|`videoStart`|Function|callback on video started|
+|`videoEnd`|Function|callback on video ended|
+
+
+For Example:
+
+```javascript
+$('video').cornPlayer('source','video/bunny.mp4')
+```
+
+To set multiple option, you can set the parameter an associative array. For Example:
+
+```javascript
+$('video').cornPlayer({
+	source:'video/bunny.mp4',
+	volume:.5,
+	videoInit:function(e){
+		//your callback function
+	},
+	videoStart:function(e){
+		//your callback function
+	},
+	videoEnd:function(e){
+		//your callback function
+	}
+})
+```
+
 ### Method
 you can access initialized corn player by calling specific method using cornPlayer function. Call the method by using `$([jQuery Object]).cornPlayer('methodName')`:
 
@@ -47,9 +103,9 @@ you can access initialized corn player by calling specific method using cornPlay
 |-------------------------------------------|-------------------------------|
 |`source`[, `URL(string)`]					|set or return video url		|
 |`volume`[, `0-1(Float)`]					|set or return video volume		|
-|`height`[, `0-1(Float)`]					|set or return video height		|
-|`width`[, `0-1(Float)`]					|set or return video width		|
-|`showController`[, `0-1(Float)`]			|disable or enable video controller|
+|`height`[, `height(Integer)`]				|set or return video height		|
+|`width`[, `width(Integer)`]				|set or return video width		|
+|`showController`[, `true(Boolean)`]		|disable or enable video controller|
 |`controller`[, `Element(jQuery Object)`]	|set video custom controller	|
 |`goFullscreen`								|set video to full screen		|
 |`exitFullscreen`							|exit video from full screen	|
@@ -76,7 +132,7 @@ For example:
 	<span kind="subtitle" name="English" src="sub/sub.vtt" srclang="en"></span>
 	<span kind="skip" name="start" label='Start' sec="2"></span>
 	<span kind="skip" name="middle" label='Middle Video' sec="30"></span>
-	<span kind="skip" name="english2" label='Tird last' sec="57"></span>
+	<span kind="skip" name="english2" label='Third last' sec="57"></span>
 </video>
 ```
 
