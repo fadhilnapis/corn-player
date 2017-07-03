@@ -5,8 +5,8 @@
 	Type: 'product'
 }
 ---
-
-# corn-player
+-----
+# CornPlayer
 Another jQuery HTML5 player with subtitle and track support.
 
 ## Features
