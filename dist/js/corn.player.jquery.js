@@ -27,7 +27,18 @@ if (typeof Object.create !=='function') {
 			if (typeof options === 'object') {
 				$.extend($.fn.cornPlayer.options, $.fn.cornPlayer.options, options)
 			}
-
+			if (that.$elem.attr('corn-player')!=undefined&&options!=undefined&&args!=undefined) {
+				el = $.fn.cornPlayer.options[options]
+				if (!(options in that.onCallMethod)) {
+					if (typeof el==='function') {
+						that.$elem.data(options, el.call(that.elem))
+						that[options]=el.call(that.elem)
+					}else{
+						that.$elem.data(options, el)
+						that[options]=el
+					}
+				}
+			}
 			if (that.$elem.attr('corn-player')===undefined) {
 				$.each($.fn.cornPlayer.options,function(index, el) {
 					if (!(index in that.onCallMethod)) {
@@ -228,6 +239,9 @@ if (typeof Object.create !=='function') {
 				that.$elem.on('toggleFullscreen', function(event) {
 					console.log('gg')
 					toggleFullscreen(that.wrapper)
+				});
+				that.$elem.on('source', function(event,arg) {
+					that.$elem.attr('src',arg);
 				});
 			}
 			//}

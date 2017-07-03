@@ -99,7 +99,7 @@ $('video').cornPlayer({
 ```
 
 ### Method
-you can access initialized corn player by calling specific method using cornPlayer function. Call the method by using `$([jQuery Object]).cornPlayer('methodName')`:
+you can access initialized corn player by calling specific method using cornPlayer function. Call the method by using `$('video').cornPlayer('methodName')`:
 
 |Parameter									|Description					|
 |-------------------------------------------|-------------------------------|
