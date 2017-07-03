@@ -1,7 +1,9 @@
 ---
+
 layout: product
 lang: both
 Type: product
+
 ---
 
 # corn-player
