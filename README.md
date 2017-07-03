@@ -1,10 +1,8 @@
 ---
 layout: "product"
-
 lang: "both"
-
 Type: "product"
----
+#---
 
 # corn-player
 Another jQuery HTML5 player with subtitle and track support.
