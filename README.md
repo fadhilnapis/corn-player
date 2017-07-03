@@ -1,8 +1,9 @@
 ---
+# <!--
 layout: "product"
 lang: "both"
 Type: "product"
-#ffdsf
+# -->
 ---
 
 # corn-player
